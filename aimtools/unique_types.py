@@ -277,10 +277,11 @@ def write_unique_mol2(orig_mol2_file,uniq_types,uniq_mol2_file):
 
 ### Execute
 ### Assumes you 
-parm = pmd.amber.LoadParm('vac.prmtop')
-uniq_types = assign_uniq_types(parm,'EQUIVATOMS.DAT')
-write_unique_frcmod('vac.prmtop',uniq_types,'uniq.frcmod')
-write_unique_mol2('ante.mol2',uniq_types,'uniq.mol2')
+if __name__ == '__main__':
+    parm = pmd.amber.LoadParm('vac.prmtop')
+    uniq_types = assign_uniq_types(parm,'EQUIVATOMS.DAT')
+    write_unique_frcmod('vac.prmtop',uniq_types,'uniq.frcmod')
+    write_unique_mol2('ante.mol2',uniq_types,'uniq.mol2')
 
 
 
