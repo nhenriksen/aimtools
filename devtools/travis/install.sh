@@ -5,12 +5,12 @@ conda config --add channels omnia --add channels conda-forge
 #conda install -y openmm
 
 conda create -y -n myenv python=$PYTHON_VERSION \
-      numpy scipy pandas
+      numpy scipy pandas parmed
 
 #conda install -y -n myenv \
 #      ambertools=17.0 -c http://ambermd.org/downloads/ambertools/conda/
 
-conda install -y parmed
+#conda install -y -n  parmed
 
 pip install codecov
 
