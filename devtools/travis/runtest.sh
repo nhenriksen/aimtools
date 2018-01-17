@@ -11,7 +11,8 @@ which python
 python --version
 which pytest
 pytest --version
-
+which parmed
+parmed --version
 
 pytest test_unique_types.py
 
