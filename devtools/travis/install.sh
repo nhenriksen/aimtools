@@ -16,5 +16,8 @@ pip install codecov
 echo 'preactive'
 source activate myenv
 echo 'postactive'
+which python
 python --version
-conda list
+which pytest
+pytest --version
+
