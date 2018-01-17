@@ -1,0 +1,14 @@
+atomnum 13
+atom O1 os 1 0
+atom C1 c3 2 0
+atom C2 c3 3 0
+atom C3 c3 4 3
+atom C4 c3 5 2
+atom H1 h1 6 0
+atom H2 h1 7 6
+atom H3 hc 8 0
+atom H4 hc 9 8
+atom H5 hc 10 8
+atom H6 hc 11 8
+atom H7 h1 12 6
+atom H8 h1 13 6

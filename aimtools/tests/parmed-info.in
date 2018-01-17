@@ -1,0 +1,7 @@
+parm thf.prmtop
+printdetails *
+printBonds
+printAngles
+printDihedrals
+quit
+        
