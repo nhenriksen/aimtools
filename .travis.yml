@@ -10,19 +10,7 @@ matrix:
          - os: linux
            python: 3.6
            env: PYTHON_VERSION=3.6
-
-script:
-    - source devtools/travis/runtest.sh
-    - codecov
-cache:
-    directories:
-        - $HOME/.cache/pip
-        - $HOME/miniconda3
-before_cache:
-    # - rm -rf $HOME/miniconda3/conda-bld
-    # - rm $HOME/miniconda3/pkgs/*.tar.bz2
 install:
-
     - |
       echo ""
       if [ ! -f $HOME/miniconda3/bin/activate ]; then
@@ -36,5 +24,16 @@ install:
     - source devtools/travis/install.sh
     - pip install --user .
     #- python -c "import paprika; print(paprika.__version__)"
+script:
+    - source devtools/travis/runtest.sh
+after_success:
+    - codecov
+cache:
+    directories:
+        - $HOME/.cache/pip
+        - $HOME/miniconda3
+before_cache:
+    # - rm -rf $HOME/miniconda3/conda-bld
+    # - rm $HOME/miniconda3/pkgs/*.tar.bz2
 notifications:
     email: false
