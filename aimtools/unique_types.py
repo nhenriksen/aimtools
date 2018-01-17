@@ -3,8 +3,6 @@ import numpy as np
 import subprocess as sp
 import parmed as pmd
 
-# ProcessWPart(gesp,wpart.csv): return(chargelist,rminlist,epslist)
-
 
 def _create_atom_type_list(first_chars,second_chars):
     """ Create all possible two character atom types """
