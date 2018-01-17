@@ -13,6 +13,8 @@ conda create -y -n myenv python=$PYTHON_VERSION \
 #conda install -y -n  parmed
 
 pip install codecov
-
+echo 'preactive'
 source activate myenv
+echo 'postactive'
 python --version
+conda list
