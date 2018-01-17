@@ -109,7 +109,10 @@ printAngles
 printDihedrals
 quit
         """.format(parm_file))
-    sp.call('parmed -i parmed-info.in >& parmed-info.log', shell=True)
+    parmlog = open('parmed-info.log', 'w')
+    sp.call(['parmed','-i','parmed-info.in'],stdout=parmlog,
+            stderr=parmlog)
+    parmlog.close()
 
     ### Setup lists for each force field term
     mass_params = []
