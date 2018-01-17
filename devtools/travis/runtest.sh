@@ -15,4 +15,5 @@ which parmed
 parmed --version
 
 pytest test_unique_types.py
-
+ls -l .
+cat parmed-*
