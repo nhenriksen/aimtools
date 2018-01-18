@@ -91,8 +91,21 @@ def assign_uniq_types(parm,equiv_file):
 
     return uniq_types
 
+def write_unique_frcmod(parm,unique_types,frcmod_file):
+    """ Create frcmod with terms for each unique atom """
 
-def write_unique_frcmod(parm_file,uniq_types,uniq_frcmod_file):
+    ### Replace atom types in raw parm data lists
+    parm.parm_data['AMBER_ATOM_TYPE'] = unique_types
+    ### Run parmed incantation for "re-initializing" all the parameters
+    parm.load_atom_info()
+    parm.fill_LJ()
+    ### Create parmset (organized list of the parameters)
+    parmset = pmd.amber.AmberParameterSet.from_structure(parm)
+    ### Write the frcmod
+    parmset.write(frcmod_file)
+
+
+def old_write_unique_frcmod(parm_file,uniq_types,uniq_frcmod_file):
     """ Create frcmod for uniq_types corresponding to the original FF """
     # NMH: add cwd support
     # NMH: I think this could be updated to apply the unique types directly
@@ -281,7 +294,7 @@ def write_unique_mol2(orig_mol2_file,uniq_types,uniq_mol2_file):
 if __name__ == '__main__':
     parm = pmd.amber.LoadParm('vac.prmtop')
     uniq_types = assign_uniq_types(parm,'EQUIVATOMS.DAT')
-    write_unique_frcmod('vac.prmtop',uniq_types,'uniq.frcmod')
+    write_unique_frcmod(parm,uniq_types,'uniq.frcmod')
     write_unique_mol2('ante.mol2',uniq_types,'uniq.mol2')
 
 
