@@ -4,10 +4,10 @@ import filecmp
 import pytest
 
 def test_unique_types():
-    parm = pmd.amber.LoadParm('thf.prmtop')
-    uniq_types = assign_uniq_types(parm,'thf.EQUIVATOMS.DAT')
-    write_unique_frcmod(parm,uniq_types,'thf.uniq.frcmod')
-    assert filecmp.cmp('REF.thf.uniq.frcmod','thf.uniq.frcmod')
+    parm = pmd.amber.LoadParm('aimtools/tests/thf.prmtop')
+    uniq_types = assign_uniq_types(parm,'aimtools/tests/thf.EQUIVATOMS.DAT')
+    write_unique_frcmod(parm,uniq_types,'aimtools/tests/thf.uniq.frcmod')
+    assert filecmp.cmp('aimtools/tests/REF.thf.uniq.frcmod','aimtools/tests/thf.uniq.frcmod')
 
 
 
