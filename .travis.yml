@@ -27,6 +27,7 @@ install:
 script:
     - source devtools/travis/runtest.sh
 after_success:
+    - py.test --cov=aimtools aimtools/tests/
     - codecov
 cache:
     directories:
