@@ -26,7 +26,7 @@ install:
     #- python -c "import paprika; print(paprika.__version__)"
 script:
     #- source devtools/travis/runtest.sh
-    - pytest --cov=aimtools tests/
+    - pytest --cov=aimtools aimtools/tests/
 after_success:
     - codecov
 #cache:
