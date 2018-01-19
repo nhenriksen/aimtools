@@ -16,7 +16,7 @@ install:
     - export PATH="$HOME/miniconda/bin:$PATH"
     - hash -r 
     - conda config --add channels omnia --add channels conda-forge
-    - conda create -y -n myenv python=$PYTHON_VERSION numpy scipy pandas parmed pytest pytest-cov codecov
+    - conda create -y -n myenv python=$TRAVIS_PYTHON_VERSION numpy scipy pandas parmed pytest pytest-cov codecov
     - source activate myenv
     - python --version
     - pip install --user .
