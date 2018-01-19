@@ -27,10 +27,11 @@ install:
 script:
     #- source devtools/travis/runtest.sh
     #- pytest --cov=aimtools aimtools/tests/
-    - pytest aimtools/tests/test_unique_types.py
+    #- pytest aimtools/tests/test_unique_types.py
+    - cd aimtools/tests && pytest --cov=aimtools .
 after_success:
-    #- codecov
-    - bash < (curl -s https://codecov.io/bash)
+    - codecov
+    #- bash < (curl -s https://codecov.io/bash)
 #cache:
 #    directories:
 #        - $HOME/.cache/pip
