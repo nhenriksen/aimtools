@@ -11,19 +11,22 @@ matrix:
            python: 3.6
            env: PYTHON_VERSION=3.6
 install:
-    - |
-      echo ""
-      if [ ! -f $HOME/miniconda3/bin/activate ]; then
-          echo "Installing a fresh version of Miniconda."
-          MINICONDA_URL="https://repo.continuum.io/miniconda"
-          MINICONDA_FILE="Miniconda3-latest-Linux-x86_64.sh"
-          curl -L -O "${MINICONDA_URL}/${MINICONDA_FILE}"
-          rm -rf $HOME/miniconda3
-          bash $MINICONDA_FILE -b
-      fi
-    - source devtools/travis/install.sh
+    #- |
+    #  echo ""
+    #  if [ ! -f $HOME/miniconda3/bin/activate ]; then
+    #      echo "Installing a fresh version of Miniconda."
+    #      MINICONDA_URL="https://repo.continuum.io/miniconda"
+    #      MINICONDA_FILE="Miniconda3-latest-Linux-x86_64.sh"
+    #      curl -L -O "${MINICONDA_URL}/${MINICONDA_FILE}"
+    #      rm -rf $HOME/miniconda3
+    #      bash $MINICONDA_FILE -b
+    #  fi
+    #- source devtools/travis/install.sh
+    - conda config --add channels omnia --add channels conda-forge
+    - conda create -y -n myenv python=$PYTHON_VERSION numpy scipy pandas parmed pytest pytest-cov codecov
+    - source activate myenv
+    - python --version
     - pip install --user .
-    #- python -c "import paprika; print(paprika.__version__)"
 script:
     #- source devtools/travis/runtest.sh
     #- pytest --cov=aimtools aimtools/tests/
