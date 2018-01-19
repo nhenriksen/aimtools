@@ -2,27 +2,16 @@ sudo: false
 
 language: python
 
-matrix:
-     include:
-         #- os: linux
-         #  python: 2.7
-         #  env: PYTHON_VERSION=2.7
-         - os: linux
-           python: 3.6
-           env: PYTHON_VERSION=3.6
+python:
+    - "2.7"
+    - "3.6"
+
 install:
-    #- |
-    #  echo ""
-    #  if [ ! -f $HOME/miniconda3/bin/activate ]; then
-    #      echo "Installing a fresh version of Miniconda."
-    #      MINICONDA_URL="https://repo.continuum.io/miniconda"
-    #      MINICONDA_FILE="Miniconda3-latest-Linux-x86_64.sh"
-    #      curl -L -O "${MINICONDA_URL}/${MINICONDA_FILE}"
-    #      rm -rf $HOME/miniconda3
-    #      bash $MINICONDA_FILE -b
-    #  fi
-    #- source devtools/travis/install.sh
-    - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
+  - if [[ "$TRAVIS_PYTHON_VERSION" == "2.7" ]]; then
+      wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh -O miniconda.sh;
+    else
+      wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
+    fi    
     - bash miniconda.sh -b -p $HOME/miniconda
     - export PATH="$HOME/miniconda/bin:$PATH"
     - hash -r 
@@ -31,20 +20,19 @@ install:
     - source activate myenv
     - python --version
     - pip install --user .
+
 script:
-    #- source devtools/travis/runtest.sh
-    #- pytest --cov=aimtools aimtools/tests/
-    #- pytest aimtools/tests/test_unique_types.py
     - cd aimtools/tests && pytest --cov=aimtools .
+
 after_success:
     - codecov
-    #- bash < (curl -s https://codecov.io/bash)
+
 #cache:
 #    directories:
 #        - $HOME/.cache/pip
 #        - $HOME/miniconda3
-before_cache:
-    # - rm -rf $HOME/miniconda3/conda-bld
-    # - rm $HOME/miniconda3/pkgs/*.tar.bz2
+#before_cache:
+#     - rm -rf $HOME/miniconda3/conda-bld
+#     - rm $HOME/miniconda3/pkgs/*.tar.bz2
 notifications:
     email: false
