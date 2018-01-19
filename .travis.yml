@@ -22,6 +22,8 @@ install:
     #      bash $MINICONDA_FILE -b
     #  fi
     #- source devtools/travis/install.sh
+    - curl -L -O https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
+    - bash Miniconda3-latest-Linux-x86_64.sh -b
     - conda config --add channels omnia --add channels conda-forge
     - conda create -y -n myenv python=$PYTHON_VERSION numpy scipy pandas parmed pytest pytest-cov codecov
     - source activate myenv
