@@ -59,11 +59,11 @@ def create_unique_type_list(parm_list, equiv_file_list):
     if not isinstance(equiv_file_list, list):
         equiv_file_list = [equiv_file_list]
 
-    ### ASCII Characters to consider
+    ### ASCII Characters to consider (don't use dash, "-"!)
     char_list = "0 1 2 3 4 5 6 7 8 9 a b c d e f g h i j k l m n o p q r\
                  s t u v w x y z A B C D E F G H I J K L M N O P Q R S T\
-                 U V W X Y Z * & $ # % [ ] { } < > ? - + = : ; ' . , ! ~\
-                 ` @ ^ ( ) _ | / \\ \"".split()
+                 U V W X Y Z * & $ # % [ ] { } < > ? + = : ; ' . , ! ~ `\
+                 @ ^ ( ) _ | / \\ \"".split()
     char_list.append(' ')
 
     # NMH: Are there any protected/hardcoded types that must be avoided?

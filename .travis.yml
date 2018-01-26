@@ -27,12 +27,15 @@ script:
 after_success:
     - codecov
 
-#cache:
-#    directories:
-#        - $HOME/.cache/pip
-#        - $HOME/miniconda3
-#before_cache:
-#     - rm -rf $HOME/miniconda3/conda-bld
-#     - rm $HOME/miniconda3/pkgs/*.tar.bz2
+before_cache:
+    - rm -rf $HOME/miniconda/conda-bld
+    - rm -f $HOME/miniconda/pkgs/*.tar.bz2
+    - rm -f $HOME/.cache/pip/log/debug.log
+
+cache:
+    directories:
+        - $HOME/.cache/pip
+        - $HOME/miniconda
+
 notifications:
-    email: false
+    email: True
