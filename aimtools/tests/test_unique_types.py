@@ -16,6 +16,7 @@ def test_batch_unique_types():
     equiv_list = []
 
     mol_list = 'thf bcb'.split()
+    ### Trying a bunch of molecules at the same time to force execution of code
     [mol_list.append('trp') for i in range(39)]
 
     for i,mol in enumerate(mol_list):
