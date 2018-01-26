@@ -1,6 +1,7 @@
-### Enable below if you need fresh install
-rm -rf $HOME/miniconda
+### If you need to do a fresh install, enable following
+#rm -rf $HOME/miniconda
 
+### Regular install, check for cached first.
 if [ -d "$HOME/miniconda" ]; then
     export PATH="$HOME/miniconda/bin:$PATH"
     conda list
