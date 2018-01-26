@@ -133,7 +133,7 @@ def write_unique_frcmod_mol2s(parm_list,
         ### Create parmset (organized list of the parameters)
         parmset = pmd.amber.AmberParameterSet.from_structure(parm)
         ### Write the individual molecule frcmod and mol2
-        if name_list == []:
+        if name_list == [None]:
             indiv_frcmod = 'mol_' + str(i) + '.frcmod'
             mol2 = 'mol_' + str(i) + '.mol2'
         else:

@@ -1,0 +1,13 @@
+atomnum 12
+atom Br1 br 1 0
+atom Cl1 cl 2 0
+atom C1 ca 3 0
+atom C2 ca 4 0
+atom C3 ca 5 4
+atom C4 ca 6 0
+atom C5 ca 7 6
+atom C6 ca 8 0
+atom H1 ha 9 0
+atom H2 ha 10 9
+atom H3 ha 11 0
+atom H4 ha 12 11
