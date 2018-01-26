@@ -8,8 +8,6 @@ python:
 
 install:
     - source devtools/travis/install.sh
-    - source activate myenv
-    - python --version
     - pip install --user .
 
 script:

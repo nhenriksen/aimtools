@@ -11,5 +11,9 @@ else
     bash miniconda.sh -b -p $HOME/miniconda
     export PATH="$HOME/miniconda/bin:$PATH"
     conda config --add channels omnia --add channels conda-forge
-    conda create -y -n myenv python=$TRAVIS_PYTHON_VERSION numpy scipy pandas parmed pytest pytest-cov codecov
+    conda create -y -n myenv python=$TRAVIS_PYTHON_VERSION
+    conda install -y -n myenv numpy scipy pandas parmed pytest pytest-cov codecov
 fi
+
+source activate myenv
+python --version
