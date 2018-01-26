@@ -1,3 +1,6 @@
+### Enable below if you need fresh install
+rm -rf $HOME/miniconda
+
 if [ -d "$HOME/miniconda" ]; then
     export PATH="$HOME/miniconda/bin:$PATH"
     conda list
