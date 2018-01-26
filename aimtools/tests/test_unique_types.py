@@ -16,7 +16,7 @@ def test_batch_unique_types():
     equiv_list = []
 
     mol_list = 'thf bcb'.split()
-    [mol_list.append('trp') for i in range(29)]
+    [mol_list.append('trp') for i in range(39)]
 
     for i,mol in enumerate(mol_list):
         parm_list.append(pmd.amber.LoadParm(mol+'.prmtop'))
