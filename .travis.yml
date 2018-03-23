@@ -12,7 +12,7 @@ install:
     - pip install --user .
 
 script:
-    - cd aimtools/tests && pytest --cov=aimtools .
+    - cd tests && pytest --cov=aimtools .
 
 after_success:
     - codecov
