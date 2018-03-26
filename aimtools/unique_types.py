@@ -22,15 +22,14 @@ def assign_unique_types(parm, equiv_ids, type_list, type_idx):
     unique_types = []
 
     for i, atom in enumerate(parm):
-        orig_type = atom.type
-        # Identify elements ... Cl and Br are common two character types
-        if orig_type == 'cl' or orig_type == 'br':
-            element = orig_type
-        else:
-            element = orig_type[0]
+
+        # Determine element from atomic number
+        element = str(atom.element)
+
         # If the equiv_id is not 0, then there is another atom to which
         # it is equivalent, so we should assign it the same uniquetype.
         if equiv_ids[i] != 0:
+            # Subtract by 1 to deal with AMBER indexing --> pythong
             unique_type = unique_types[equiv_ids[i] - 1]
         else:
             # This is a new unique atom, so assign a new type
@@ -100,25 +99,25 @@ atom H4 hc 5 2
     # NMH: Are there any protected/hardcoded types that must be avoided?
 
     ### Generate atom type lists. We'll prioritize certain names for
-    #   common elements.
+    #   common elements, as determined by their atomic number.
     type_list = {}
-    type_list['h'] = _create_atom_type_list(['h', 'H', '1'], char_list)
-    type_list['c'] = _create_atom_type_list(['c', 'C', '6'], char_list)
-    type_list['n'] = _create_atom_type_list(['n', 'N', '7'], char_list)
-    type_list['o'] = _create_atom_type_list(['o', 'O', '8'], char_list)
-    type_list['f'] = _create_atom_type_list(['f', 'F', '9'], char_list)
-    type_list['p'] = _create_atom_type_list(['p', 'P', 'q'], char_list)
-    type_list['s'] = _create_atom_type_list(['s', 'S', 'Z'], char_list)
-    type_list['cl'] = _create_atom_type_list(['l', 'L', '!'], char_list)
-    type_list['br'] = _create_atom_type_list(['b', 'B', '$'], char_list)
-    type_list['i'] = _create_atom_type_list(['i', 'I', '|'], char_list)
+    type_list['1'] = _create_atom_type_list(['h', 'H', '1'], char_list)
+    type_list['6'] = _create_atom_type_list(['c', 'C', '6'], char_list)
+    type_list['7'] = _create_atom_type_list(['n', 'N', '7'], char_list)
+    type_list['8'] = _create_atom_type_list(['o', 'O', '8'], char_list)
+    type_list['9'] = _create_atom_type_list(['f', 'F', '9'], char_list)
+    type_list['15'] = _create_atom_type_list(['p', 'P', 'q'], char_list)
+    type_list['16'] = _create_atom_type_list(['s', 'S', 'Z'], char_list)
+    type_list['17'] = _create_atom_type_list(['l', 'L', '!'], char_list)
+    type_list['35'] = _create_atom_type_list(['b', 'B', '$'], char_list)
+    type_list['53'] = _create_atom_type_list(['i', 'I', '|'], char_list)
     # Do not use space as a first character in atom type
     type_list['all'] = _create_atom_type_list(char_list[:-1], char_list)
 
     ### Create a per-element index counter for atom types to bookkeep
     #   the types in use
-    type_idx = {'h': 0, 'c': 0, 'n': 0, 'o': 0, 'f': 0, 'p': 0, 's': 0,\
-                'cl': 0, 'br': 0, 'i': 0, 'all': 0}
+    type_idx = {'1': 0, '6': 0, '7': 0, '8': 0, '9': 0, '15': 0, '16': 0,\
+                '17': 0, '35': 0, '53': 0, 'all': 0}
 
     ### New unique types. Will correspond with atom index.
     unique_types = []
