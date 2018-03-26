@@ -12,10 +12,10 @@ def test_unique_types():
         shutil.rmtree(out_dir)
     os.makedirs(out_dir)
     parm = pmd.amber.LoadParm('thf.prmtop')
-    unique_types = create_unique_type_list(parm,'thf.EQUIVATOMS.DAT')
-    write_unique_frcmod_mol2s(parm,unique_types,'thf.uniq.frcmod',names='thf.uniq',path=out_dir)
-    assert filecmp.cmp('REF.thf.uniq.frcmod',out_dir+'/thf.uniq.frcmod')
-    assert filecmp.cmp('REF.thf.uniq.mol2',out_dir+'/thf.uniq.mol2')
+    unique_types = create_unique_type_list(parm, 'thf.EQUIVATOMS.DAT')
+    write_unique_frcmod_mol2s(parm, unique_types, names='thf.uniq', batch_frcmod_file='thf.uniq.frcmod', path=out_dir)
+    assert filecmp.cmp('REF.thf.uniq.frcmod', out_dir+'/thf.uniq.frcmod')
+    assert filecmp.cmp('REF.thf.uniq.mol2', out_dir+'/thf.uniq.mol2')
     shutil.rmtree(out_dir)
 
 def test_batch_unique_types():
@@ -37,8 +37,8 @@ def test_batch_unique_types():
         equiv_list.append(mol+'.EQUIVATOMS.DAT')
 
     unique_types = create_unique_type_list(parm_list, equiv_list)
-    write_unique_frcmod_mol2s(parm_list, unique_types, 'batch.frcmod',path=out_dir)
-    assert filecmp.cmp('REF.batch.frcmod',out_dir+'/batch.frcmod')
+    write_unique_frcmod_mol2s(parm_list, unique_types, batch_frcmod_file='batch.frcmod', path=out_dir)
+    assert filecmp.cmp('REF.batch.frcmod', out_dir+'/batch.frcmod')
     shutil.rmtree(out_dir)
 
 

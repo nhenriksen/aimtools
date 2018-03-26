@@ -44,6 +44,7 @@ def assign_unique_types(parm, equiv_ids, type_list, type_idx):
                     type_idx['all'] += 1
                 unique_type = type_list['all'][type_idx['all']]
                 type_idx['all'] += 1
+
         unique_types.append(unique_type)
 
     return unique_types
@@ -124,37 +125,65 @@ atom H4 hc 5 2
 
     for i, parm in enumerate(parms):
 
-        equiv_file = equiv_files[i]
-
-        if equiv_files is None:
+        # If no equiv_files are provided, assume all atoms are unique.
+        # Note, the None was forced inside a list above.
+        if equiv_files == [None]:
             equiv_ids = np.zeros([len(parm.atoms)], np.int32)
         else:
             equiv_file = equiv_files[i]
+            # If there is not an equiv_file for this particular parm,
+            # assume all atoms are unique
             if equiv_file is None:
                 equiv_ids = np.zeros([len(parm.atoms)], np.int32)
             else:
                 equiv_idxs,equiv_ids = np.loadtxt(equiv_file, dtype=np.int32,
                                    skiprows=1, usecols=(3,4), unpack=True)
 
-        ### ADD COMMENT
-        unique_types.append(
-            assign_unique_types(parm, equiv_ids, type_list, type_idx))
+        # Run the unique typer thing
+        unique_types.append(assign_unique_types(parm, equiv_ids, type_list, type_idx))
 
-    return unique_types
+    if len(parms) == 1:
+        return unique_types[0]
+    else:
+        return unique_types
 
 
 def write_unique_frcmod_mol2s(parms,
                               unique_types,
-                              frcmod_file='all_unique.frcmod',
                               names=None,
+                              batch_frcmod_file=None,
                               path='.'):
-    """ Create frcmod with terms for each unique atom """
+    """
+    Create frcmod with terms for each unique atom.
 
+    Parameters:
+    ----------
+    parms : AmberParm or list of AmberParm
+        These are required to write
+    unique_types :  list or list of lists
+        The list(s) of unique atom types for the parms
+    names : str or list of strings
+        If not present, mol2/frcmods will be given default names, e.g. mol_1.mol2.
+        Specifying names will custom name the mol2/frcmods.
+    batch_frcmod_file : str
+        If not None, the parameters for all molecules in this batch will be written
+        to a single frcmod file with the specified name
+    path : str
+        Path to location where output files are written
+
+    """
+
+    # Should I add a check to make sure the parm is correct?  It needs to be
+    # a structure (I think?) in order to write a mol2.
+
+    # Allow for custom output paths
     path += '/'
 
     ### Maintain the convenience of not specifying as list
     if not isinstance(parms, list):
         parms = [parms]
+    if not isinstance(unique_types[0], list):
+        unique_types = [unique_types]
     if not isinstance(names, list):
         names = [names]
 
@@ -187,8 +216,9 @@ def write_unique_frcmod_mol2s(parms,
     ### Can't figure out a way to skip the 'write out individual frcmod
     #   and then read them all in to generate complete frcmod' approach.
     #   Don't see a way to combine parmsets.  Should look more ...
-    parmset = pmd.amber.AmberParameterSet(frcmod_list)
-    parmset.write(path+frcmod_file)
+    if batch_frcmod_file:
+        parmset = pmd.amber.AmberParameterSet(frcmod_list)
+        parmset.write(path+batch_frcmod_file)
 
 
 ### Execute
