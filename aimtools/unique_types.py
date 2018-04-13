@@ -261,8 +261,6 @@ if __name__ == '__main__':
                     names.append(None)
                 else:
                     names.append(arg)
-
-                names.append(arg)
             else:
                 raise Exception('Please specify a file type (-p, -c, -e, -n) prior to the following file:'+arg)
 
@@ -275,4 +273,4 @@ if __name__ == '__main__':
 
     ### Execute
     unique_types = create_unique_type_list(parms, equiv_files)
-    write_unique_frcmod_mol2s(parms, unique_types, 'all_unique.frcmod', names=names)
+    write_unique_frcmod_mol2s(parms, unique_types, batch_frcmod_file='all_unique.frcmod', names=names)
