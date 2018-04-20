@@ -1,5 +1,6 @@
 import sys
 import re
+from collections import OrderedDict
 from decimal import Decimal
 import logging as log
 log.basicConfig(format='%(asctime)s %(message)s', datefmt='%Y-%m-%d %I:%M:%S %p', level=log.DEBUG)
@@ -11,7 +12,7 @@ class ChargedMol(object):
         self.mol2 = None
         self.mol2_lines = None
         self.atom_charge_list = []
-        self.charge_type_count_dict = {}
+        self.charge_type_count_dict = OrderedDict()
         self.initial_net_charge = None
         self.current_net_charge = None
         self.charge_count_list = []
