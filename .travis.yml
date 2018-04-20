@@ -9,7 +9,7 @@ python:
 install:
     - chmod +x devtools/travis/install.sh
     - source devtools/travis/install.sh
-    - pip install --user .
+    - pip install .
 
 script:
     - cd tests && pytest --cov=aimtools .
