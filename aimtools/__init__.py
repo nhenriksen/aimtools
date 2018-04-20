@@ -2,6 +2,7 @@
 The aimtools package provides tools for using the atoms-in-molecules approach with MD force fields in AMBER.
 """
 
-from aimtools.unique_types import *
+import aimtools.unique_types
+import aimtools.charge_tune
 
-__all__ = ["unique_types"]
+__all__ = ["unique_types", "charge_tune"]
