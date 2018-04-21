@@ -39,7 +39,6 @@ def test_batch_unique_types():
 
     unique_types = create_unique_type_list(parm_list, equiv_list)
     write_unique_frcmod_mol2s(parm_list, unique_types, batch_frcmod_file='batch.frcmod', path=out_dir)
-    sp.call(['cat', out_dir+'/batch.frcmod'])
     assert filecmp.cmp('REF.batch.frcmod', out_dir+'/batch.frcmod')
     shutil.rmtree(out_dir)
 
